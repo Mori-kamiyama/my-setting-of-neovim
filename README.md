@@ -4,14 +4,6 @@
 
 ### ToDo
 - [x] commentをtypescirptにも対応させる。
-- [ ] markdownを編集しやすくする
+- [x] markdownを編集しやすくする
 - [ ] 日本語に対応させる
-- [ ] じゃが
 
-**zyaga**
-# aka
-| TH | TH |
-| ---- | ---- |
-
-| AKA | AO |
-|---- | --- |
