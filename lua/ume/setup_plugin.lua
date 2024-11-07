@@ -46,6 +46,17 @@ require('packer').startup(function()
         end
     }
 
+	-- treesitterを用いて、行の結合を設定
+	use {
+		'Wansmer/treesj',
+		requires = { 'nvim-treesitter/nvim-treesitter' },
+		config = function()
+			require('treesj').setup({
+				-- 必要に応じて設定
+			})
+		end
+	}
+
     -- ts用のautotag
     use {
         'windwp/nvim-ts-autotag',
@@ -84,8 +95,7 @@ require('packer').startup(function()
         branch = 'v2',
         config = function()
             require'hop'.setup{}
-            vim.api.nvim_set_keymap('n', 's', ":HopChar1<cr>", {silent = true})
-            vim.api.nvim_set_keymap('v', 'ss', "<Esc>:HopChar1<cr>v", {silent = true})
+            vim.api.nvim_set_keymap('n', '<leader>h', ":HopChar1<cr>", {silent = true})
         end
     }
 
@@ -127,6 +137,22 @@ require('packer').startup(function()
             require('ume.plugins.nvim-cmp')
         end
     }
+
+	use({
+		"kylechui/nvim-surround",
+		config = function()
+			require("nvim-surround").setup({})
+		end
+	})
+
+	-- キーをわかりやすくする-
+	use {
+		"folke/which-key.nvim",
+		config = function()
+			require("ume.plugins.which-key").setup {
+			}
+		end
+	}
 end)
 
 require('mason').setup()
@@ -134,9 +160,9 @@ require('mason').setup()
 require('mason-lspconfig').setup_handlers({
   function(server)
     local opt = {
-      capabilities = require('cmp_nvim_lsp').default_capabilities(
-        vim.lsp.protocol.make_client_capabilities()
-      )
+		capabilities = require('cmp_nvim_lsp').default_capabilities(
+			vim.lsp.protocol.make_client_capabilities()
+		)
     }
     require('lspconfig')[server].setup(opt)
   end
