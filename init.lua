@@ -24,11 +24,11 @@ vim.g.mapleader = ' ' -- leaderキー
 vim.keymap.set({ 'n', 'v' }, '<space>', '<nop>', { silent = true })
 
 -- 移動を楽に
-vim.keymap.set({ 'n', 'v' }, 'K', '10k', { noremap = true, silent = true })
-vim.keymap.set({ 'n', 'v' }, 'J', '10j', { noremap = true, silent = true })
+-- vim.keymap.set({ 'n', 'v' }, 'K', '10k', { noremap = true, silent = true })
+-- vim.keymap.set({ 'n', 'v' }, 'J', '10j', { noremap = true, silent = true })
 
 -- 上の埋め合わせ
-vim.keymap.set('n', '<C-J>', 'J', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<C-J>', 'J', { noremap = true, silent = true })
 
 -- Emacs風のキーバインド
 vim.api.nvim_set_keymap('i', '<C-p>', '<Up>', { noremap = true, silent = true })
@@ -66,7 +66,7 @@ vim.api.nvim_set_keymap('n', '<Esc><Esc>', ':nohlsearch<CR>', { noremap = true, 
 vim.api.nvim_set_keymap('n', '<leader>l', ":set relativenumber!<cr>", {})
 
 -- Telescope find_files
--- vim.api.nvim_set_keymap('n', '<leader>kk', "<cmd>Telescope find_files<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>kk', "<cmd>Telescope find_files<cr>", { noremap = true, silent = true })
 
 -- dial.nvimを既存のインクリメント、デクリメントを上書き
 local dial = require("dial.map")
