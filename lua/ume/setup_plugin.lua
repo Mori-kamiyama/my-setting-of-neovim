@@ -163,6 +163,8 @@ require('packer').startup(function()
 			require('ume.plugins.dial')  -- 別ファイルの設定を読み込む
 		end
 	}
+
+	-- gitsign 便利
 end)
 
 require('mason').setup()
