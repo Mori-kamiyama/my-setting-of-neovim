@@ -15,8 +15,8 @@ require('packer').startup(function()
     use 'nvim-tree/nvim-web-devicons'
 
     -- 保留中のgit操作関連
-    use 'dinhhuy258/git.nvim'
     use 'lewis6991/gitsigns.nvim'
+	use 'dinhhuy258/git.nvim'
 
     -- 自動保存
     use 'pocco81/auto-save.nvim'
@@ -146,11 +146,21 @@ require('packer').startup(function()
 	})
 
 	-- キーをわかりやすくする-
+	-- use {
+		-- "folke/which-key.nvim",
+		-- config = function()
+			-- require("ume.plugins.which-key").setup {
+
+			-- }
+		-- end
+	-- }
+
+	-- インクリメント、ディクリメントを直感的に
+	-- 結構空気のような存在だが、いないと困る。
 	use {
-		"folke/which-key.nvim",
+		'monaqa/dial.nvim',
 		config = function()
-			require("ume.plugins.which-key").setup {
-			}
+			require('ume.plugins.dial')  -- 別ファイルの設定を読み込む
 		end
 	}
 end)

@@ -1,4 +1,5 @@
 vim.cmd [[packadd packer.nvim]]
+vim.cmd [[packadd packer.nvim]]
 
 require('ume/basic_config')
 require('ume/setup_plugin')
@@ -65,4 +66,9 @@ vim.api.nvim_set_keymap('n', '<Esc><Esc>', ':nohlsearch<CR>', { noremap = true, 
 vim.api.nvim_set_keymap('n', '<leader>l', ":set relativenumber!<cr>", {})
 
 -- Telescope find_files
-vim.api.nvim_set_keymap('n', '<leader>kk', "<cmd>Telescope find_files<cr>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>kk', "<cmd>Telescope find_files<cr>", { noremap = true, silent = true })
+
+-- dial.nvimを既存のインクリメント、デクリメントを上書き
+local dial = require("dial.map")
+vim.api.nvim_set_keymap("n", "<C-a>", dial.inc_normal(), { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-x>", dial.dec_normal(), { noremap = true, silent = true })
