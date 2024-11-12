@@ -1,5 +1,4 @@
 vim.cmd [[packadd packer.nvim]]
-vim.cmd [[packadd packer.nvim]]
 
 require('ume/basic_config')
 require('ume/setup_plugin')
