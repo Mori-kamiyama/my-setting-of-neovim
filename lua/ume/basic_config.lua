@@ -12,6 +12,8 @@ opt.smartindent = true
 -- カーソルが存在する行にハイライトを当ててくれます。
 opt.cursorline = true 
 
+vim.opt.signcolumn = 'yes'
+
 -- カーソルが存在する列にハイライトを当てたい場合、下記をtrueにする。
 -- opt.cursorculumn = true
 

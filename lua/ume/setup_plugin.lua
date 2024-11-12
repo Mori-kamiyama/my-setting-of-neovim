@@ -9,14 +9,11 @@ require('packer').startup(function()
     use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } }
 
     -- いろいろなプラグインの依存元
+	-- 非同期処理に必要らしい
     use 'nvim-lua/plenary.nvim'
 
     -- アイコンの設定（filetree用）
     use 'nvim-tree/nvim-web-devicons'
-
-    -- 保留中のgit操作関連
-    use 'lewis6991/gitsigns.nvim'
-	use 'dinhhuy258/git.nvim'
 
     -- 自動保存
     use 'pocco81/auto-save.nvim'
@@ -164,8 +161,17 @@ require('packer').startup(function()
 		end
 	}
 
-	-- gitsign 便利
+	-- terminalに行かなくても、TUIで確認ができて便利
 	use 'kdheepak/lazygit.nvim'
+
+	-- gitsignがでる
+	use {
+		'lewis6991/gitsigns.nvim',
+		requires = { 'nvim-lua/plenary.nvim' },
+		config = function()
+			require('ume.plugins.gitsigns').setup()
+		end
+	}
 end)
 
 require('mason').setup()
@@ -180,3 +186,4 @@ require('mason-lspconfig').setup_handlers({
     require('lspconfig')[server].setup(opt)
   end
 })
+

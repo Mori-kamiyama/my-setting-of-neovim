@@ -1,0 +1,15 @@
+-- 現在休止中
+-- 相対行表示ができないのでやめた
+--
+-- local M = {}
+--
+-- function M.setup()
+-- 	require('statuscol').setup({
+-- 		segments = {
+-- 			{ text = { require('statuscol.builtin').git_signs }, click = "v:lua.ScLa" },
+-- 			{ text = { require('statuscol.builtin').diagnostic_signs }, click = "v:lua.ScSa" },
+-- 		},
+-- 	})
+-- end
+--
+-- return M
