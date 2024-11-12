@@ -74,4 +74,4 @@ vim.api.nvim_set_keymap("n", "<C-a>", dial.inc_normal(), { noremap = true, silen
 vim.api.nvim_set_keymap("n", "<C-x>", dial.dec_normal(), { noremap = true, silent = true })
 
 -- lazygit呼び出し
-vim.api.nvim_set_keymap('n', '<leader>g', ':silent !lazygit<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>g', ':LazyGit<CR>', { noremap = true, silent = true })

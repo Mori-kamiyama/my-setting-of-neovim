@@ -165,6 +165,7 @@ require('packer').startup(function()
 	}
 
 	-- gitsign 便利
+	use 'kdheepak/lazygit.nvim'
 end)
 
 require('mason').setup()
