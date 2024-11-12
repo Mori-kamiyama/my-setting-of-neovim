@@ -72,3 +72,6 @@ vim.api.nvim_set_keymap('n', '<leader>kk', "<cmd>Telescope find_files<cr>", { no
 local dial = require("dial.map")
 vim.api.nvim_set_keymap("n", "<C-a>", dial.inc_normal(), { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-x>", dial.dec_normal(), { noremap = true, silent = true })
+
+-- lazygit呼び出し
+vim.api.nvim_set_keymap('n', '<leader>g', ':silent !lazygit<CR>', { noremap = true, silent = true })
