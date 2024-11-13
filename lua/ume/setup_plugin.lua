@@ -163,7 +163,6 @@ require('packer').startup(function()
 
 	-- terminalに行かなくても、TUIで確認ができて便利
 	use 'kdheepak/lazygit.nvim'
-
 	-- gitsignがでる
 	use {
 		'lewis6991/gitsigns.nvim',

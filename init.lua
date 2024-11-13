@@ -31,7 +31,6 @@ vim.keymap.set({ 'n', 'v' }, '<space>', '<nop>', { silent = true })
 
 -- Emacs風のキーバインド
 vim.api.nvim_set_keymap('i', '<C-p>', '<Up>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-n>', '<Down>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-b>', '<Left>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-f>', '<Right>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-h>', '<BS>', { noremap = true, silent = true })
