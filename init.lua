@@ -74,18 +74,3 @@ vim.api.nvim_set_keymap("n", "<C-x>", dial.dec_normal(), { noremap = true, silen
 -- lazygit呼び出し
 vim.api.nvim_set_keymap('n', '<leader>g', ':LazyGit<CR>', { noremap = true, silent = true })
 
--- 個人的に好みではなかった。
---
--- nとNをつかいやすく
---
--- local kopts = { noremap = true, silent = true }
--- vim.api.nvim_set_keymap('n', 'n',
---   [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
---   kopts)
--- vim.api.nvim_set_keymap('n', 'N',
---   [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
---   kopts)
--- vim.api.nvim_set_keymap('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
--- vim.api.nvim_set_keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
--- vim.api.nvim_set_keymap('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
--- vim.api.nvim_set_keymap('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)

@@ -182,13 +182,7 @@ require('packer').startup(function()
 	-- }
 end)
 
-vim.diagnostic.config({
-    virtual_text = true,  -- エラー/警告の仮想テキストを非表示
-    signs = false,          -- サインアイコンは表示する
-    underline = true,      -- 下線表示は行う
-    update_in_insert = true,
-})
-
+require('ume.plugins.ale')
 require('mason').setup()
 
 require('mason-lspconfig').setup_handlers({
