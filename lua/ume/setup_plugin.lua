@@ -171,7 +171,23 @@ require('packer').startup(function()
 			require('ume.plugins.gitsigns').setup()
 		end
 	}
+
+	-- hit件数が表示される 地味に便利かも
+	-- 個人的には好きになれなかった。
+	-- use {
+	-- 	'kevinhwang91/nvim-hlslens',
+	-- 	config = function()
+	-- 		require('hlslens').setup()
+	-- 	end
+	-- }
 end)
+
+vim.diagnostic.config({
+    virtual_text = true,  -- エラー/警告の仮想テキストを非表示
+    signs = false,          -- サインアイコンは表示する
+    underline = true,      -- 下線表示は行う
+    update_in_insert = true,
+})
 
 require('mason').setup()
 

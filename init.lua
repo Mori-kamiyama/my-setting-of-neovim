@@ -30,13 +30,13 @@ vim.keymap.set({ 'n', 'v' }, '<space>', '<nop>', { silent = true })
 -- vim.keymap.set('n', '<C-J>', 'J', { noremap = true, silent = true })
 
 -- Emacs風のキーバインド
-vim.api.nvim_set_keymap('i', '<C-p>', '<Up>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-b>', '<Left>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-f>', '<Right>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-h>', '<BS>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-d>', '<Del>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-a>', '<Home>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-e>', '<End>', { noremap = true, silent = true })
+vim.keymap.set({ 'i', 'c' }, '<C-p>', '<Up>', { noremap = true, silent = true })
+vim.keymap.set({ 'i', 'c' }, '<C-b>', '<Left>', { noremap = true, silent = true })
+vim.keymap.set({ 'i', 'c' }, '<C-f>', '<Right>', { noremap = true, silent = true })
+vim.keymap.set({ 'i', 'c' }, '<C-h>', '<BS>', { noremap = true, silent = true })
+vim.keymap.set({ 'i', 'c' }, '<C-d>', '<Del>', { noremap = true, silent = true })
+vim.keymap.set({ 'i', 'c' }, '<C-a>', '<Home>', { noremap = true, silent = true })
+vim.keymap.set({ 'i', 'c' }, '<C-e>', '<End>', { noremap = true, silent = true })
 
 -- Uキーでredo （もとはその行の編集を止めてた）
 vim.api.nvim_set_keymap('n', 'U', '<C-r>', { noremap = true, silent = true })
@@ -74,3 +74,18 @@ vim.api.nvim_set_keymap("n", "<C-x>", dial.dec_normal(), { noremap = true, silen
 -- lazygit呼び出し
 vim.api.nvim_set_keymap('n', '<leader>g', ':LazyGit<CR>', { noremap = true, silent = true })
 
+-- 個人的に好みではなかった。
+--
+-- nとNをつかいやすく
+--
+-- local kopts = { noremap = true, silent = true }
+-- vim.api.nvim_set_keymap('n', 'n',
+--   [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+--   kopts)
+-- vim.api.nvim_set_keymap('n', 'N',
+--   [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+--   kopts)
+-- vim.api.nvim_set_keymap('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+-- vim.api.nvim_set_keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+-- vim.api.nvim_set_keymap('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+-- vim.api.nvim_set_keymap('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
