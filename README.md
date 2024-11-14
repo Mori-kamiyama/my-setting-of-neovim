@@ -35,7 +35,7 @@ git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pac
 ```
 
 ### 5. Packerを使う
-**<5-1>**
+**<5-1>**  
 nvimをterminalで実行
 ``` zsh
 nvim
@@ -49,7 +49,7 @@ Neovimが開かれたら、
 :qa!
 ```
 で終了。
-**<5-2>**
+**<5-2>**  
 もう一度、5-1の手順を繰り返したら、もうあなたはNeovimマスター！
 
 # 開発メモ
