@@ -1,19 +1,19 @@
 # 使い方
 
-1. neovimのインストール
+### 1. neovimのインストール
 ``` zsh
 brew install neovim
 ```
 
 
-2. gitのインストール
+### 2. gitのインストール
 
 ``` zsh
 brew install git
 ```
 
 
-3. このgithubのクローンとこのリポジトリにスターをつける
+### 3. このgithubのクローンとこのリポジトリにスターをつける
 
 まず、このリポジトリにスターをつけてね（強制はしないよ）
 
@@ -28,20 +28,36 @@ mv my-setting-of-neovim nvim
 
 
 
-4. Packerをcloneしてくる
+### 4. Packerをcloneしてくる
 ``` zsh
 git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
 ```
 
-5. Packerを使う
+### 5. Packerを使う
+**<5-1>**
+nvimをterminalで実行
+``` zsh
+nvim
+```
+Neovimが開かれたら、
+``` nvim
+:PackerSync
+```
+ロードが終わったら、
+``` nvim
+:qa!
+```
+で終了。
+**<5-2>**
+もう一度、5-1の手順を繰り返したら、もうあなたはNeovimマスター！
 
-
-### jaga
+### memo
 
 もしかして、「;」が次世代の<leader>キーになれるのではないだろうか。
 
 ### ToDo
 - [x] commentをtypescirptにも対応させる。
 - [x] markdownを編集しやすくする
-- [ ] 日本語に対応させる
+- [x] 日本語に対応させる
+- [ ] git関係の追加・LSPエラーの見やすい表示
 
