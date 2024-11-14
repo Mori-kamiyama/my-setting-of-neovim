@@ -70,8 +70,9 @@ Neovimが開かれたら、
 - [x] commentをtypescirptにも対応させる。
 - [x] git操作やりやすく
 	- [x] git関係の追加・LSP ( ALE ) エラーの見やすい表示
-- [ ] ALE errorメッセージの、warningレベルだと、errorの色を
+- [x] ALE errorメッセージの、warningレベルだと、errorの色を
 	  コメントアウトと同じ灰色にする
+	  → 結構二時間かかった
 - [ ] snipetをつける(cmainで#include~ が入力できるなど)
 - [ ] 変数への定義ジャンプをつくる
 - [ ] かっこ編集強化プラグインをより直感的なものに変える
