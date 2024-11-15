@@ -66,8 +66,11 @@ mv my-setting-of-neovim nvim
 - [ ] telescopeにいろんな機能を割り当てる
     - [x] keymap読み込み
 - [ ] 遅延読み込みで起動時間50msを目指す
-- [ ] termianlを開けるようにする（<space>tとかかな）
-      あとはVScodeっぽく
+    - [x] 100msを切る
+    - [ ] 80ms
+    - [ ] 50ms
+- [x] termianlを開けるようにする（<space>tとかかな）
+    - [ ] あとはVScodeっぽく下におけるようにしておきたいです。
 - [ ] 日本語に対応させる
     - [x] insert modeでemacsの基本操作ができるようにする
     - [ ] 検索を、ローマ字でできるようにする

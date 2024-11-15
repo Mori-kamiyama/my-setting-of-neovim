@@ -229,10 +229,51 @@ require("lazy").setup({
 			-- フローティングターミナル用のキーマッピング
 			vim.keymap.set('n', '<space>t', ':ToggleTerm<CR>', { noremap = true, silent = true, desc = 'Toggle Floating Terminal' })
 		end
+	},
+
+	{
+		'goolord/alpha-nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' }, -- アイコンが必要なら
+		config = function()
+			local alpha = require('alpha')
+			local dashboard = require('alpha.themes.dashboard')
+
+			-- シンプルなヘッダー
+			dashboard.section.header.val = {
+				[[ Welcome to Neovim, うめさん! ]],
+				[[ Ready to code 🚀 ]]
+			}
+
+			-- シンプルなメニュー
+			dashboard.section.buttons.val = {
+				dashboard.button("f", " Find file", ":Telescope find_files<CR>"),
+				dashboard.button("r", " Recent files", ":Telescope oldfiles<CR>"),
+				dashboard.button("e", " see file tree", ":NvimTreeToggle<CR>"),
+			}
+
+			-- フッター
+			dashboard.section.footer.val = "Have a great coding session!"
+
+			-- 設定を有効化
+			alpha.setup(dashboard.config)
+
+			-- 不要な機能を無効化
+			vim.cmd([[
+	  autocmd FileType alpha setlocal nofoldenable
+	  ]])
+		end
 	}
 }, {
 	ui = {
 		border = "rounded", -- ボーダースタイルを指定（rounded, single, double, solid, shadowなど）
+		colors = {
+			background = "#161822", -- Icebergのダーク背景色
+			border = "#6b7089", -- ボーダー色（淡いグレー）
+			title = "#d2d4de", -- タイトルテキストの色（明るいグレー）
+			normal = "#c6c8d1", -- 通常のテキスト色（明るいグレー）
+			comment = "#6b7089", -- コメント色（落ち着いたグレー）
+			error = "#e27878", -- エラーテキストの色（赤みのある色）
+		},
 	},
 	-- 起動速度を早くするための確認用
 	-- :Lazy profileでわかる
