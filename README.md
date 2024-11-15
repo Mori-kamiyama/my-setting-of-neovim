@@ -39,8 +39,8 @@ mv my-setting-of-neovim nvim
   1プラグイン1機能の原則
 - デフォルトのvimと、キーバインドを大きく変えることはしない。
 - 見た目はある程度気にする。iceberg最高。
-- 必要以上のカスタマイズは、煩わしいので使いませんん。
-  要素数が増えるのは悪。かっこよくても集中が削がれる。
+- 必要以上のカスタマイズは、煩わしいので使いません。<br>
+  要素数が増えるのは悪。かっこよくても集中が削がれる。<br>
 　ex )lualine.nvim, which-key.nvim
   ただし補完プラグインは入れる。そっちの方が効率がいいから。
 - git操作など、vim内で完結させる系はがんがん入れていきたい。
@@ -51,21 +51,27 @@ mv my-setting-of-neovim nvim
 - [x] commentをtypescirptにも対応させる。
 - [x] git操作やりやすく
 	- [x] git関係の追加・LSP ( ALE ) エラーの見やすい表示
-- [x] ALE errorメッセージの、warningレベルだと、errorの色を
-	  コメントアウトと同じ灰色にする
+- [x] ALE errorメッセージの、warningレベルだと、errorの色を<br>
+	  コメントアウトと同じ灰色にする<br>
 	  → 結構3時間かかった
+- [x] Packerからlazy.nvimへの移行をする
+- [x] helpが左右に画面分割をしてでるようにする
 - [ ] snipet
 	- [x] snipetをつける(cmainで#include~ が入力できるなど)
-    - [ ] snipetを簡単に編集できるようにする
+    - [ ] snipetを簡単に編集できるようにする<br>
           → telescope-luasnip.nvim
-- [x] Packerからlazy.nvimへの移行をする
-- [ ] 変数への定義ジャンプをつくる
+- [ ] 起動画面かっこよく
 - [ ] かっこ編集強化プラグインをより直感的なものに変える
-- [ ] helpが左右に画面分割をしてでるようにする
 - [ ] markdownを編集しやすくする
 - [ ] telescopeにいろんな機能を割り当てる
+    - [x] keymap読み込み
 - [ ] 遅延読み込みで起動時間50msを目指す
 - [ ] termianlを開けるようにする（<space>tとかかな）
+      あとはVScodeっぽく
 - [ ] 日本語に対応させる
     - [x] insert modeでemacsの基本操作ができるようにする
     - [ ] 検索を、ローマ字でできるようにする
+    - [ ] IMEをnormalモード時にオフにする
+
+- [ ] 変数への定義ジャンプをつくる →　個人的につかわないな
+

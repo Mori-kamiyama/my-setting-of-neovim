@@ -47,6 +47,10 @@ vim.api.nvim_set_keymap('n', '<leader>l', ":set relativenumber!<cr>", {})
 
 -- Telescope find_files
 vim.api.nvim_set_keymap('n', '<leader>kk', "<cmd>Telescope find_files<cr>", { noremap = true, silent = true })
+-- keymaps Telesope
+vim.api.nvim_set_keymap('n', '<leader>km', "<cmd>Telescope keymaps<cr>", { noremap = true, silent = true })
+-- search Projectkeymaps
+vim.api.nvim_set_keymap('n', '<leader>kp', "<cmd>Telescope project<cr>", { noremap = true, silent = true })
 
 -- dial.nvimを既存のインクリメント、デクリメントを上書き
 local dial = require("dial.map")
@@ -56,4 +60,6 @@ vim.api.nvim_set_keymap("n", "<C-x>", dial.dec_normal(), { noremap = true, silen
 -- lazygit呼び出し
 vim.api.nvim_set_keymap('n', '<leader>g', ':LazyGit<CR>', { noremap = true, silent = true })
 
+-- hopします
+vim.api.nvim_set_keymap("n", "<leader>h", ":HopChar1<cr>", { silent = true })
 

@@ -26,10 +26,3 @@ vim.api.nvim_set_hl(0, 'DiagnosticWarn', { fg = '#6A708B', bg = 'NONE' })
 -- 縦棒のwindowセパレータを空白に設定したよ（一バイト文字しか読み込めないので注意） 気になる時はaとかにして再起動するとおもろいかも
 vim.opt.fillchars = { vert = ' ' }
 
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "markdown",
-    callback = function()
-        -- カーソルが常に中央に来るようにscrolloffを極端に大きく設定
-        vim.cmd("setlocal scrolloff=999")
-    end
-})

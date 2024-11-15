@@ -36,10 +36,13 @@ require'nvim-tree'.setup {
 	hijack_netrw = true, -- netrwを乗っ取って、nvim-treeを使う
 }
 
+-- 見た目の速さを出すためにコメントアウト
+
 -- デフォルトでnvim-treeを開く設定
-vim.api.nvim_create_autocmd({"VimEnter"}, {
-	callback = function()
-		require("nvim-tree.api").tree.open()
-	end
-})
+-- vim.api.nvim_create_autocmd({"VimEnter"}, {
+-- 	callback = function()
+-- 		require("nvim-tree.api").tree.open()
+-- 	end
+-- })
+--
 

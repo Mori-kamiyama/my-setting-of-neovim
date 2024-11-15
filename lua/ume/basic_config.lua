@@ -55,3 +55,13 @@ vim.cmd([[
 ]])
 
 opt.termguicolors = true
+
+-- helpファイルが開かれたときに、左右に分割される。
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  pattern = "*.txt",
+  callback = function()
+    if vim.bo.filetype == "help" then
+      vim.cmd("wincmd L") -- ヘルプウィンドウを右側に移動
+    end
+  end,
+})
