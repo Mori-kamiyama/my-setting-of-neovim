@@ -27,31 +27,6 @@ mv my-setting-of-neovim nvim
 ```
 を実行してね
 
-
-
-### 4. Packerをcloneしてくる
-``` zsh
-git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
-```
-
-### 5. Packerを使う
-**<5-1>**  
-nvimをterminalで実行
-``` zsh
-nvim
-```
-Neovimが開かれたら、
-``` nvim
-:PackerSync
-```
-ロードが終わったら、
-``` nvim
-:qa!
-```
-で終了。  
-**<5-2>**  
-もう一度、5-1の手順を繰り返したら、全てのプラグインがinstallされ、Neovimが使いやすくなります。
-
 # 開発メモ
 もしかして、";"が次世代の<leader>キーになれるのではないだろうか。
 
@@ -86,5 +61,4 @@ Neovimが開かれたら、
 - [ ] 日本語に対応させる
     - [x] insert modeでemacsの基本操作ができるようにする
     - [ ] 検索を、ローマ字でできるようにする
-    - [ ] 
-- [ ] Packerからlazy.nvimへの移行をする
+- [x] Packerからlazy.nvimへの移行をする

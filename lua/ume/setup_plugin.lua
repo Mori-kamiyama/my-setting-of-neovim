@@ -1,210 +1,209 @@
-require('packer').startup(function()
-    -- 絶対必須。プラグインの元
-    use 'wbthomason/packer.nvim'
+-- lazy.nvimのインストールコード
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+    -- 必須プラグイン
+    { "wbthomason/packer.nvim" },
 
     -- カラースキーム
-    use 'cocopon/iceberg.vim'
+    {
+        "cocopon/iceberg.vim",
+        config = function() vim.cmd("colorscheme iceberg") end,
+    },
 
-    -- 右側にfiletreeを表示
-    use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } }
+    -- ファイルツリー
+    {
+        "nvim-tree/nvim-tree.lua",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            require("nvim-tree").setup()
+        end,
+    },
 
-    -- いろいろなプラグインの依存元
-	-- 非同期処理に必要らしい
-    use 'nvim-lua/plenary.nvim'
-
-    -- アイコンの設定（filetree用）
-    use 'nvim-tree/nvim-web-devicons'
+    -- 基本依存プラグイン
+    { "nvim-lua/plenary.nvim" },
 
     -- 自動保存
-    use 'pocco81/auto-save.nvim'
+    { "pocco81/auto-save.nvim" },
 
     -- masonの追加
-    use { 'williamboman/mason.nvim' }
-    use { 'williamboman/mason-lspconfig.nvim' }  -- mason-lspconfigの追加
+    { "williamboman/mason.nvim" },
+    { "williamboman/mason-lspconfig.nvim" },
 
     -- LSPサーバーの設定
-    use { 'neovim/nvim-lspconfig' }  -- lspconfigの追加
-
-    -- かっこの自動補完
-    use { 'windwp/nvim-autopairs', config = function()
-        require('nvim-autopairs').setup{}
-    end }
-
-    -- treesitterの設定（シンタックスハイライト）
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
+    {
+        "neovim/nvim-lspconfig",
         config = function()
-            require('nvim-treesitter.configs').setup {
+            require('mason').setup()
+            require('mason-lspconfig').setup_handlers({
+                function(server)
+                    local opt = {
+                        capabilities = require('cmp_nvim_lsp').default_capabilities(
+                            vim.lsp.protocol.make_client_capabilities()
+                        )
+                    }
+                    require('lspconfig')[server].setup(opt)
+                end
+            })
+        end
+    },
+
+    -- 括弧自動補完
+    {
+        "windwp/nvim-autopairs",
+        config = function()
+            require("nvim-autopairs").setup()
+        end,
+    },
+
+    -- treesitterの設定
+    {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
+        config = function()
+            require("nvim-treesitter.configs").setup {
                 ensure_installed = { "html", "javascript", "typescript", "c" },
                 highlight = { enable = true },
                 indent = { enable = true },
             }
-        end
-    }
+        end,
+    },
 
-	-- treesitterを用いて、行の結合を設定
-	use {
-		'Wansmer/treesj',
-		requires = { 'nvim-treesitter/nvim-treesitter' },
-		config = function()
-			require('treesj').setup({
-				-- 必要に応じて設定
-			})
-		end
-	}
+    -- treesitterを用いた行の結合
+    {
+        "Wansmer/treesj",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        config = function()
+            require("treesj").setup()
+        end,
+    },
 
     -- ts用のautotag
-    use {
-        'windwp/nvim-ts-autotag',
+    {
+        "windwp/nvim-ts-autotag",
         config = function()
-            require('nvim-ts-autotag').setup({
+            require("nvim-ts-autotag").setup({
                 filetypes = { "html", "javascript", "typescript", "xml", "vue", "svelte" }
             })
-        end
-    }
+        end,
+    },
 
-    -- コメントアウトを簡単にするプラグイン
-    use {
-        'numToStr/Comment.nvim',
+    -- コメントアウト
+    {
+        "numToStr/Comment.nvim",
         config = function()
-            require('Comment').setup {
-                pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+            require("Comment").setup {
+                pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
             }
-        end
-    }
+        end,
+    },
 
-    -- tsコンテキストコメント用プラグイン
-    use {
-        'JoosepAlviste/nvim-ts-context-commentstring',
-        requires = 'nvim-treesitter/nvim-treesitter',
-    }
+    -- tsコンテキストコメント
+    { "JoosepAlviste/nvim-ts-context-commentstring", dependencies = "nvim-treesitter/nvim-treesitter" },
 
-    -- ファイルの高速実行用
-    use 'thinca/vim-quickrun'
+    -- ファイルの高速実行
+    { "thinca/vim-quickrun" },
 
     -- エラー表示
-    use 'dense-analysis/ale'
+    { "dense-analysis/ale", config = function() require('ume.plugins.ale') end },
 
     -- 移動用プラグイン
-    use {
-        'phaazon/hop.nvim',
-        branch = 'v2',
+    {
+        "phaazon/hop.nvim",
+        branch = "v2",
         config = function()
-            require'hop'.setup{}
-            vim.api.nvim_set_keymap('n', '<leader>h', ":HopChar1<cr>", {silent = true})
-        end
-    }
+            require("hop").setup()
+            vim.api.nvim_set_keymap("n", "<leader>h", ":HopChar1<cr>", { silent = true })
+        end,
+    },
 
     -- fuzzy finder
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.5',
-        requires = { {'nvim-lua/plenary.nvim'} }
-    }
+    {
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.5",
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
 
     -- カラーコードプレビュー
-    use 'norcalli/nvim-colorizer.lua'
-    require'colorizer'.setup({
-        '*'; -- 全てのファイルタイプで有効化
-    })
+    {
+        "norcalli/nvim-colorizer.lua",
+        config = function()
+            require("colorizer").setup({ "*" })
+        end,
+    },
 
     -- Markdown設定
-    use {
-        'ixru/nvim-markdown',
+    {
+        "ixru/nvim-markdown",
         config = function()
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = "markdown",
                 command = "setlocal conceallevel=2 concealcursor=nc"
             })
-        end
-    }
+        end,
+    },
 
-	-- snipetプラグイン
-	use {
-		'L3MON4D3/LuaSnip',
-		requires = {
-			'saadparwaiz1/cmp_luasnip',  -- 正しいプラグイン名
-			'rafamadriz/friendly-snippets',
-		},
-		config = function()
-			require("luasnip.loaders.from_lua").load({ paths = vim.fn.expand("~/.config/nvim/lua/ume/snippets/") })
-		end
-	}
+    -- snippetプラグイン
+    {
+        "L3MON4D3/LuaSnip",
+        dependencies = { "saadparwaiz1/cmp_luasnip", "rafamadriz/friendly-snippets" },
+        config = function()
+            require("luasnip.loaders.from_lua").load({ paths = vim.fn.expand("~/.config/nvim/lua/ume/snippets/") })
+        end,
+    },
 
     -- LSPと補完の設定
-    use {
-        'hrsh7th/nvim-cmp',
-        requires = {
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-cmdline',
-            'hrsh7th/cmp-vsnip',
-            'hrsh7th/vim-vsnip',
+    {
+        "hrsh7th/nvim-cmp",
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
+            "hrsh7th/cmp-vsnip",
+            "hrsh7th/vim-vsnip",
         },
         config = function()
-            require('ume.plugins.nvim-cmp')
-        end
-    }
+            require("ume.plugins.nvim-cmp")
+        end,
+    },
 
-	use({
-		"kylechui/nvim-surround",
-		config = function()
-			require("nvim-surround").setup({})
-		end
-	})
+    -- surround
+    {
+        "kylechui/nvim-surround",
+        config = function()
+            require("nvim-surround").setup({})
+        end,
+    },
 
-	-- キーをわかりやすくする-
-	-- use {
-		-- "folke/which-key.nvim",
-		-- config = function()
-			-- require("ume.plugins.which-key").setup {
+    -- インクリメント・デクリメント
+    {
+        "monaqa/dial.nvim",
+        config = function()
+            require("ume.plugins.dial")
+        end,
+    },
 
-			-- }
-		-- end
-	-- }
+    -- lazygit
+    { "kdheepak/lazygit.nvim" },
 
-	-- インクリメント、ディクリメントを直感的に
-	-- 結構空気のような存在だが、いないと困る。
-	use {
-		'monaqa/dial.nvim',
-		config = function()
-			require('ume.plugins.dial')  -- 別ファイルの設定を読み込む
-		end
-	}
-
-	-- terminalに行かなくても、TUIで確認ができて便利
-	use 'kdheepak/lazygit.nvim'
-	-- gitsignがでる
-	use {
-		'lewis6991/gitsigns.nvim',
-		requires = { 'nvim-lua/plenary.nvim' },
-		config = function()
-			require('ume.plugins.gitsigns').setup()
-		end
-	}
-
-	-- hit件数が表示される 地味に便利かも
-	-- 個人的には好きになれなかった。
-	-- use {
-	-- 	'kevinhwang91/nvim-hlslens',
-	-- 	config = function()
-	-- 		require('hlslens').setup()
-	-- 	end
-	-- }
-end)
-
-require('mason').setup()
-
-require('mason-lspconfig').setup_handlers({
-  function(server)
-    local opt = {
-		capabilities = require('cmp_nvim_lsp').default_capabilities(
-			vim.lsp.protocol.make_client_capabilities()
-		)
-    }
-    require('lspconfig')[server].setup(opt)
-  end
+    -- gitsigns
+    {
+        "lewis6991/gitsigns.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("ume.plugins.gitsigns").setup()
+        end,
+    },
 })
-
-require('ume.plugins.ale')
