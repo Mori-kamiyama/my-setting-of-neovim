@@ -3,7 +3,8 @@ local cmp = require('cmp')
 cmp.setup({
     snippet = {
         expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body) -- vsnipのスニペット展開
+            -- vim.fn["vsnip#anonymous"](args.body) -- vsnipのスニペット展開
+			luasnip.lsp_expand(args.body)  -- LuaSnipでスニペットを展開
         end,
     },
 	window = {
@@ -17,7 +18,8 @@ cmp.setup({
     },
     sources = cmp.config.sources({
         { name = 'nvim_lsp', max_item_count = 5 }, -- nvim_lspのアイテム数を制限
-        { name = 'vsnip' },  -- スニペット
+        -- { name = 'vsnip' },  -- スニペット
+		{ name = 'luasnip' },  -- LuaSnipのスニペットを補完候補に追加
         { name = 'buffer', max_item_count = 15 },   -- bufferのアイテム数を制限
         { name = 'path', max_item_count = 15 }      -- pathのアイテム数を制限
     }),

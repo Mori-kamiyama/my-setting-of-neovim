@@ -119,6 +119,18 @@ require('packer').startup(function()
         end
     }
 
+	-- snipetプラグイン
+	use {
+		'L3MON4D3/LuaSnip',
+		requires = {
+			'saadparwaiz1/cmp_luasnip',  -- 正しいプラグイン名
+			'rafamadriz/friendly-snippets',
+		},
+		config = function()
+			require("luasnip.loaders.from_lua").load({ paths = vim.fn.expand("~/.config/nvim/lua/ume/snippets/") })
+		end
+	}
+
     -- LSPと補完の設定
     use {
         'hrsh7th/nvim-cmp',
@@ -128,7 +140,7 @@ require('packer').startup(function()
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
             'hrsh7th/cmp-vsnip',
-            'hrsh7th/vim-vsnip'
+            'hrsh7th/vim-vsnip',
         },
         config = function()
             require('ume.plugins.nvim-cmp')
@@ -182,7 +194,6 @@ require('packer').startup(function()
 	-- }
 end)
 
-require('ume.plugins.ale')
 require('mason').setup()
 
 require('mason-lspconfig').setup_handlers({
@@ -196,3 +207,4 @@ require('mason-lspconfig').setup_handlers({
   end
 })
 
+require('ume.plugins.ale')

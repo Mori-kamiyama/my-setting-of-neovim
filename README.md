@@ -73,12 +73,18 @@ Neovimが開かれたら、
 - [x] ALE errorメッセージの、warningレベルだと、errorの色を
 	  コメントアウトと同じ灰色にする
 	  → 結構3時間かかった
-- [ ] snipetをつける(cmainで#include~ が入力できるなど)
+- [ ] snipet
+	- [x] snipetをつける(cmainで#include~ が入力できるなど)
+    - [ ] snipetを簡単に編集できるようにする
+          → telescope-luasnip.nvim
 - [ ] 変数への定義ジャンプをつくる
 - [ ] かっこ編集強化プラグインをより直感的なものに変える
-- [ ] helpが画面分割をしてでるようにする
+- [ ] helpが左右に画面分割をしてでるようにする
 - [ ] markdownを編集しやすくする
 - [ ] telescopeにいろんな機能を割り当てる
 - [ ] termianlを開けるようにする（<space>tとかかな）
-- [ ] 日本語に対応させる(自動分割)
+- [ ] 日本語に対応させる
+    - [x] insert modeでemacsの基本操作ができるようにする
+    - [ ] 検索を、ローマ字でできるようにする
+    - [ ] 
 - [ ] Packerからlazy.nvimへの移行をする
