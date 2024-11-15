@@ -42,6 +42,8 @@ mv my-setting-of-neovim nvim
 　ex )lualine.nvim, which-key.nvim
   ただし補完プラグインは入れる。そっちの方が効率がいいから。
 - git操作など、vim内で完結させる系はがんがん入れていきたい。
+- 速さは重要! できれば遅延読み込みを駆使して50msぐらいいきたいな。
+  https://qiita.com/delphinus/items/fb905e452b2de72f1a0f#4-%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%AE%E9%81%85%E5%BB%B6%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF
 
 ### ToDo
 - [x] commentをtypescirptにも対応させる。
@@ -60,6 +62,7 @@ mv my-setting-of-neovim nvim
 - [ ] helpが左右に画面分割をしてでるようにする
 - [ ] markdownを編集しやすくする
 - [ ] telescopeにいろんな機能を割り当てる
+- [ ] 遅延読み込みで起動時間50msを目指す
 - [ ] termianlを開けるようにする（<space>tとかかな）
 - [ ] 日本語に対応させる
     - [x] insert modeでemacsの基本操作ができるようにする

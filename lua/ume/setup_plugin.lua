@@ -203,4 +203,22 @@ require("lazy").setup({
             require("ume.plugins.gitsigns").setup()
         end,
     },
+
+	-- terminalをだす
+	{
+		'akinsho/toggleterm.nvim', -- プラグインの名前
+		version = "*", -- バージョンを指定。最新を使いたい場合は "*" でOK。
+		config = function()
+			require('toggleterm').setup({
+				-- 基本設定をここに書く
+				size = 15, -- ターミナルのサイズ（水平/垂直時の高さや幅）
+				direction = 'horizontal', -- 水平分割（フローティングの場合は 'float'）
+				float_opts = {
+					border = 'curved', -- フローティングウィンドウのボーダーの形
+				},
+				shade_terminals = true, -- ターミナルの背景を暗くする
+				start_in_insert = true, -- ターミナルを開いたら挿入モードでスタート
+			})
+		end
+	}
 })
