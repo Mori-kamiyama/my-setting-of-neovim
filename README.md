@@ -3,7 +3,9 @@ macで使っています。
 デフォルトのterminalは、アイコンや色の表示ができないため、
 Weztermをおすすめします。
 
-かなり初心者向けで、私自身あまりうまくありません。
+
+![Neovim Use](https://github.com/user-attachments/assets/98fd6d6a-fed8-415f-9b25-f14dced2657a)
+
 
 ### 1. neovimのインストール
 ``` zsh
