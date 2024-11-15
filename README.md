@@ -1,5 +1,9 @@
-# 使い方
-macようだよ
+# 概要
+macで使っています。
+デフォルトのterminalは、アイコンや色の表示ができないため、
+Weztermをおすすめします。
+
+かなり初心者向けで、私自身あまりうまくありません。
 
 ### 1. neovimのインストール
 ``` zsh
@@ -8,11 +12,9 @@ brew install neovim
 
 
 ### 2. gitのインストール
-
 ``` zsh
 brew install git
 ```
-
 
 ### 3. このgithubのクローンとこのリポジトリにスターをつける
 
@@ -52,6 +54,7 @@ mv my-setting-of-neovim nvim
 	- [x] snipetをつける(cmainで#include~ が入力できるなど)
     - [ ] snipetを簡単に編集できるようにする
           → telescope-luasnip.nvim
+- [x] Packerからlazy.nvimへの移行をする
 - [ ] 変数への定義ジャンプをつくる
 - [ ] かっこ編集強化プラグインをより直感的なものに変える
 - [ ] helpが左右に画面分割をしてでるようにする
@@ -61,4 +64,3 @@ mv my-setting-of-neovim nvim
 - [ ] 日本語に対応させる
     - [x] insert modeでemacsの基本操作ができるようにする
     - [ ] 検索を、ローマ字でできるようにする
-- [x] Packerからlazy.nvimへの移行をする

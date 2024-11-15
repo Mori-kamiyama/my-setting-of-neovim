@@ -13,9 +13,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    -- 必須プラグイン
-    { "wbthomason/packer.nvim" },
-
     -- カラースキーム
     {
         "cocopon/iceberg.vim",
