@@ -212,39 +212,44 @@ require("lazy").setup({
 
 	-- terminalをだす
 	{
-		'akinsho/toggleterm.nvim', -- プラグインの名前
-		version = "*", -- バージョンを指定。最新を使いたい場合は "*" でOK。
-		cmd = { "ToggleTerm", "TermExec" }, -- 必要なコマンドで読み込み
+		'akinsho/toggleterm.nvim',
+		version = "*",
+		cmd = { "ToggleTerm", "TermExec" },
 		config = function()
 			require('toggleterm').setup({
-				-- 基本設定をここに書く
-				size = 15, -- ターミナルのサイズ（水平/垂直時の高さや幅）
-				direction = 'horizontal', -- 水平分割（フローティングの場合は 'float'）
+				size = 20, -- サイズはフローティングウィンドウの場合は無視される
+				direction = 'float', -- フローティングウィンドウを指定
 				float_opts = {
-					border = 'curved', -- フローティングウィンドウのボーダーの形
+					border = 'curved', -- ボーダーのスタイル（curved, double, single, shadow など）
 				},
 				shade_terminals = true, -- ターミナルの背景を暗くする
 				start_in_insert = true, -- ターミナルを開いたら挿入モードでスタート
 			})
+
+			-- フローティングターミナル用のキーマッピング
+			vim.keymap.set('n', '<space>t', ':ToggleTerm<CR>', { noremap = true, silent = true, desc = 'Toggle Floating Terminal' })
 		end
 	}
 }, {
--- 起動速度を早くするための確認用
--- :Lazy profileでわかる
-  performance = {
-    rtp = {
-		disabled_plugins = {
-			"gzip",
-			"tarPlugin",
-			"tohtml",
-			"zipPlugin",
-			"netrwPlugin",
-			"tutor",
-			"matchit", -- 使っていなければ無効化
-			"matchparen", -- 使っていなければ無効化
+	ui = {
+		border = "rounded", -- ボーダースタイルを指定（rounded, single, double, solid, shadowなど）
+	},
+	-- 起動速度を早くするための確認用
+	-- :Lazy profileでわかる
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"gzip",
+				"tarPlugin",
+				"tohtml",
+				"zipPlugin",
+				"netrwPlugin",
+				"tutor",
+				"matchit", -- 使っていなければ無効化
+				"matchparen", -- 使っていなければ無効化
+			},
 		},
-    },
-  },
-  debug = false, -- デバッグ情報 いちいちうるさいので、テスト中のみの適用をおすすめ
-  profiler = true, -- プロファイラーを有効化
+	},
+	debug = false, -- デバッグ情報 いちいちうるさいので、テスト中のみの適用をおすすめ
+	profiler = true, -- プロファイラーを有効化
 })

@@ -63,3 +63,6 @@ vim.api.nvim_set_keymap('n', '<leader>g', ':LazyGit<CR>', { noremap = true, sile
 -- hopします
 vim.api.nvim_set_keymap("n", "<leader>h", ":HopChar1<cr>", { silent = true })
 
+-- <space>tでtermianlをとぐる
+vim.keymap.set('n', '<space>t', ':ToggleTerm<CR>', { noremap = true, silent = true, desc = 'Toggle Terminal' })
+

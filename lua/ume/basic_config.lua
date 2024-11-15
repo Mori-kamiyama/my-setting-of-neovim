@@ -10,7 +10,7 @@ opt.smartindent = true
 -- smartindent と cindent を両方 true にしたときは、cindent のみ true になるようです。
 -- opt.cindent = true
 -- カーソルが存在する行にハイライトを当ててくれます。
-opt.cursorline = true 
+opt.cursorline = true
 
 vim.opt.signcolumn = 'yes'
 
