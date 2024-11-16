@@ -18,14 +18,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	-- カラースキーム
-	{
-		"cocopon/iceberg.vim",
-		config = function() vim.cmd("colorscheme iceberg") end,
-	},
+	{ "iceberg.vim", lazy = true, event = "VeryLazy" },
 
 	-- ファイルツリー
 	{
 		"nvim-tree/nvim-tree.lua",
+		  cmd = { "NvimTreeToggle", "NvimTreeFindFile" }, -- コマンド実行時にのみロード
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		keys = {
 			{ "<leader>e", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
@@ -42,12 +40,19 @@ require("lazy").setup({
 	{ "pocco81/auto-save.nvim" },
 
 	-- masonの追加
-	{ "williamboman/mason.nvim" },
-	{ "williamboman/mason-lspconfig.nvim" },
+	{
+		"williamboman/mason.nvim",
+		cmd = { "Mason", "MasonInstall", "MasonUpdate" }, -- コマンド実行時に読み込む
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		event = "BufReadPre"
+	},
 
 	-- LSPサーバーの設定
 	{
 		"neovim/nvim-lspconfig",
+		event = { "BufReadPre" }, -- 遅延ロード
 		config = function()
 			require('mason').setup()
 			require('mason-lspconfig').setup_handlers({
@@ -66,6 +71,7 @@ require("lazy").setup({
 	-- 括弧自動補完
 	{
 		"windwp/nvim-autopairs",
+		event = "InsertEnter",
 		config = function() require("nvim-autopairs").setup() end,
 	},
 
@@ -86,7 +92,9 @@ require("lazy").setup({
 	-- treesitterを用いた行の結合
 	{
 		"Wansmer/treesj",
-		event = "VeryLazy",
+		keys = {
+			{ "<space>m", "<cmd>TSJToggle<CR>", desc = "Toggle Treesitter Join/Split" }
+		},
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = function()
 			require("treesj").setup()
@@ -96,6 +104,7 @@ require("lazy").setup({
 	-- ts用のautotag
 	{
 		"windwp/nvim-ts-autotag",
+		ft = { "html", "xml", "javascriptreact", "typescriptreact" }, -- 必要なファイルタイプだけ
 		config = function()
 			require("nvim-ts-autotag").setup({
 				filetypes = { "html", "javascript", "typescript", "xml", "vue", "svelte" }
@@ -127,15 +136,6 @@ require("lazy").setup({
 	-- エラー表示
 	{ "dense-analysis/ale", config = function() require('ume.plugins.ale') end },
 
-	-- 移動用プラグイン
-	{
-		"phaazon/hop.nvim",
-		branch = "v2",
-		config = function()
-			require("hop").setup()
-		end,
-	},
-
 	-- fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
@@ -145,6 +145,7 @@ require("lazy").setup({
 	-- カラーコードプレビュー
 	{
 		"norcalli/nvim-colorizer.lua",
+		event = "BufReadPost", -- ファイルを開いた後に自動ロード
 		config = function()
 			require("colorizer").setup({ "*" })
 		end,
@@ -169,20 +170,10 @@ require("lazy").setup({
 		end,
 	},
 
-	-- 常に綺麗にmarkdownをフォーマット
-	-- {
-	-- 	'MeanderingProgrammer/render-markdown.nvim',
-	-- 	dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-	-- 	-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-	-- 	-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-	-- 	---@module 'render-markdown'
-	-- 	---@type render.md.UserConfig
-	-- 	opts = {},
-	-- },
-
 	-- snippetプラグイン
 	{
 		"L3MON4D3/LuaSnip",
+		event = 'InsertEnter',
 		dependencies = {
 			"saadparwaiz1/cmp_luasnip", -- cmpとの連携
 			"rafamadriz/friendly-snippets", -- 汎用スニペット集
@@ -206,17 +197,24 @@ require("lazy").setup({
 	},
 
 	-- 補完
+	-- https://qiita.com/delphinus/items/fb905e452b2de72f1a0f#441-hrsh7thnvim-cmpを参考
 	{
 		"hrsh7th/nvim-cmp",
+		event = { "InsertEnter", "CmdlineEnter" }, -- 挿入モードとコマンドラインモードで遅延読み込み
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-cmdline",
-			"saadparwaiz1/cmp_luasnip", -- LuaSnip用補完ソース
+			-- LSP用補完ソース
+			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+			-- バッファ補完ソース
+			{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+			-- パス補完ソース
+			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
+			-- コマンドライン補完ソース
+			{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+			-- LuaSnip用補完ソース
+			{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
 		},
 		config = function()
-			require("ume.plugins.nvim-cmp")
+			require("ume.plugins.nvim-cmp") -- 設定ファイルを呼び出す
 		end,
 	},
 
@@ -269,6 +267,9 @@ require("lazy").setup({
 			vim.keymap.set('n', '<space>t', ':ToggleTerm<CR>', { noremap = true, silent = true, desc = 'Toggle Floating Terminal' })
 		end
 	},
+
+	-- flash
+	 { import = "ume.plugins.flash" }
 
 }, {
 	ui = {

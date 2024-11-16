@@ -54,14 +54,14 @@ mv my-setting-of-neovim nvim
 - [x] ALE errorメッセージの、warningレベルだと、errorの色を<br>
 	  コメントアウトと同じ灰色にする<br>
 	  → 結構3時間かかった
-- [x] Packerからlazy.nvimへの移行をする
-- [x] helpが左右に画面分割をしてでるようにする
+- [x] packerからlazy.nvimへの移行をする
 - [x] snipetをつける(cmainで#include~ が入力できるなど)
 - [x] telescopeにいろんな機能を割り当てる
 - [ ] キーマップをわかりやすくする
+- [x] hop.nvimを変える → flash.nvimへ
 - [ ] 遅延読み込みで起動時間50msを目指す
     - [x] 100msを切る
-    - [ ] 80ms
+    - [x] 80ms
     - [ ] 50ms
 - [x] termianlを開けるようにする（<space>tとかかな）
     - [ ] あとはVScodeっぽく下におけるようにしておきたいです。

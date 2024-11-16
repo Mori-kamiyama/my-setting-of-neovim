@@ -43,7 +43,11 @@ vim.keymap.set('i', 'jj', '<esc>', { silent = true }) -- インサートモー�
 vim.api.nvim_set_keymap('n', '<leader>c', ':nohlsearch<CR>', { noremap = true, silent = true })
 
 -- 相対行表示をon/off
-vim.api.nvim_set_keymap('n', '<leader>l', ":set relativenumber!<cr>", {})
+-- lazyのon offのキーとかぶっちゃったのでやめた
+-- vim.api.nvim_set_keymap('n', '<leader>l', ":set relativenumber!<cr>", {})
+
+
+-- プラグイン系設定
 
 -- Telescope find_files
 vim.api.nvim_set_keymap('n', '<leader>kk', "<cmd>Telescope find_files<cr>", { noremap = true, silent = true })
@@ -60,9 +64,15 @@ vim.api.nvim_set_keymap("n", "<C-x>", dial.dec_normal(), { noremap = true, silen
 -- lazygit呼び出し
 vim.api.nvim_set_keymap('n', '<leader>g', ':LazyGit<CR>', { noremap = true, silent = true })
 
--- hopします
-vim.api.nvim_set_keymap("n", "<leader>h", ":HopChar1<cr>", { silent = true })
-
 -- <space>tでtermianlをとぐる
 vim.keymap.set('n', '<space>t', ':ToggleTerm<CR>', { noremap = true, silent = true, desc = 'Toggle Terminal' })
 
+-- treesj
+-- 上二つはあんまつかわん
+-- vim.keymap.set("n", "<leader>j", require("treesj").toggle, { desc = "Toggle Treesj" })
+-- vim.keymap.set("n", "<leader>s", require("treesj").split, { desc = "Split Treesj" })
+vim.keymap.set("n", "<leader>m", require("treesj").join, { desc = "Join Treesj" })
+
+-- lazy
+vim.keymap.set('n', '<space>ll', ':Lazy<CR>', { noremap = true, silent = true})
+vim.keymap.set('n', '<space>lp', ':Lazy profile<CR>', { noremap = true, silent = true})
