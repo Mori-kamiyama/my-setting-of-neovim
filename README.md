@@ -56,15 +56,9 @@ mv my-setting-of-neovim nvim
 	  → 結構3時間かかった
 - [x] Packerからlazy.nvimへの移行をする
 - [x] helpが左右に画面分割をしてでるようにする
-- [ ] snipet
-	- [x] snipetをつける(cmainで#include~ が入力できるなど)
-    - [ ] snipetを簡単に編集できるようにする<br>
-          → telescope-luasnip.nvim
-- [ ] 起動画面かっこよく
-- [ ] かっこ編集強化プラグインをより直感的なものに変える
-- [ ] markdownを編集しやすくする
-- [ ] telescopeにいろんな機能を割り当てる
-    - [x] keymap読み込み
+- [x] snipetをつける(cmainで#include~ が入力できるなど)
+- [x] telescopeにいろんな機能を割り当てる
+- [ ] キーマップをわかりやすくする
 - [ ] 遅延読み込みで起動時間50msを目指す
     - [x] 100msを切る
     - [ ] 80ms
@@ -76,5 +70,7 @@ mv my-setting-of-neovim nvim
     - [ ] 検索を、ローマ字でできるようにする
     - [ ] IMEをnormalモード時にオフにする
 
+### やめた、あきらめた
+- [ ] markdownを編集しやすくする
 - [ ] 変数への定義ジャンプをつくる →　個人的につかわないな
 

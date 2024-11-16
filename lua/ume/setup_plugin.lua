@@ -27,7 +27,9 @@ require("lazy").setup({
 	{
 		"nvim-tree/nvim-tree.lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		event = "BufWinEnter", -- ウィンドウが開いたときに読み込み
+		keys = {
+			{ "<leader>e", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
+		},
 		config = function()
 			require("nvim-tree").setup()
 		end,
@@ -76,7 +78,7 @@ require("lazy").setup({
 		run = ":TSUpdate",
 		config = function()
 			require("nvim-treesitter.configs").setup {
-				ensure_installed = { "html", "javascript", "typescript", "c" },
+				ensure_installed = { "markdown", "markdown_inline", "html", "javascript", "typescript", "c" },
 				highlight = { enable = true },
 				indent = { enable = true },
 			}
@@ -149,17 +151,35 @@ require("lazy").setup({
 	{
 		"ixru/nvim-markdown",
 		config = function()
+			-- プラグイン固有の設定
+			vim.g.vim_markdown_conceal = 1
+			vim.g.vim_markdown_conceal_code_blocks = 1
+
+			-- FileType autocmd
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = "markdown",
-				command = "setlocal conceallevel=2 concealcursor=nc"
+				callback = function()
+					vim.opt_local.conceallevel = 2
+					vim.opt_local.concealcursor = "nc"
+				end
 			})
 		end,
 	},
 
+	-- 常に綺麗にmarkdownをフォーマット
+	-- {
+	-- 	'MeanderingProgrammer/render-markdown.nvim',
+	-- 	dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+	-- 	-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+	-- 	-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+	-- 	---@module 'render-markdown'
+	-- 	---@type render.md.UserConfig
+	-- 	opts = {},
+	-- },
+
 	-- snippetプラグイン
 	{
 		"L3MON4D3/LuaSnip",
-		event = "InsertEnter",
 		dependencies = { "saadparwaiz1/cmp_luasnip" },
 		config = function()
 			require("luasnip.loaders.from_lua").load({ paths = vim.fn.expand("~/.config/nvim/lua/ume/snippets/") })
@@ -169,7 +189,8 @@ require("lazy").setup({
 	-- LSPと補完の設定
 	{
 		"hrsh7th/nvim-cmp",
-		event = { "InsertEnter", "CmdlineEnter" }, -- 挿入モードとコマンドラインモードでロード
+		-- 補完が効かないのが不便だったためやめてる
+		-- event = { "InsertEnter", "CmdlineEnter" }, -- 挿入モードとコマンドラインモードでロード
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
@@ -231,38 +252,6 @@ require("lazy").setup({
 		end
 	},
 
-	{
-		'goolord/alpha-nvim',
-		dependencies = { 'nvim-tree/nvim-web-devicons' }, -- アイコンが必要なら
-		config = function()
-			local alpha = require('alpha')
-			local dashboard = require('alpha.themes.dashboard')
-
-			-- シンプルなヘッダー
-			dashboard.section.header.val = {
-				[[ Welcome to Neovim, うめさん! ]],
-				[[ Ready to code 🚀 ]]
-			}
-
-			-- シンプルなメニュー
-			dashboard.section.buttons.val = {
-				dashboard.button("f", " Find file", ":Telescope find_files<CR>"),
-				dashboard.button("r", " Recent files", ":Telescope oldfiles<CR>"),
-				dashboard.button("e", " see file tree", ":NvimTreeToggle<CR>"),
-			}
-
-			-- フッター
-			dashboard.section.footer.val = "Have a great coding session!"
-
-			-- 設定を有効化
-			alpha.setup(dashboard.config)
-
-			-- 不要な機能を無効化
-			vim.cmd([[
-	  autocmd FileType alpha setlocal nofoldenable
-	  ]])
-		end
-	}
 }, {
 	ui = {
 		border = "rounded", -- ボーダースタイルを指定（rounded, single, double, solid, shadowなど）

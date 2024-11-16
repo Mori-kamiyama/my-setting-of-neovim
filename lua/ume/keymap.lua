@@ -49,7 +49,7 @@ vim.api.nvim_set_keymap('n', '<leader>l', ":set relativenumber!<cr>", {})
 vim.api.nvim_set_keymap('n', '<leader>kk', "<cmd>Telescope find_files<cr>", { noremap = true, silent = true })
 -- keymaps Telesope
 vim.api.nvim_set_keymap('n', '<leader>km', "<cmd>Telescope keymaps<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>kd', "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>kf', "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>kh', "<cmd>Telescope command_history<cr>", { noremap = true, silent = true })
 
 -- dial.nvimを既存のインクリメント、デクリメントを上書き
