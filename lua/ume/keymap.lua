@@ -29,9 +29,6 @@ vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<cr>', { silent = true
 -- コピペの簡略化
 vim.api.nvim_set_keymap('n', '<leader>a', 'ggVG', { noremap = true, silent = true })
 
--- 画面遷移
-vim.keymap.set({ 'n', 'v' }, '<leader>f', '<c-w>w')
-
 -- ペーストが便利かも
 vim.api.nvim_set_keymap('n', 'p', ']p', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'P', ']P', { noremap = true, silent = true })
@@ -41,6 +38,9 @@ vim.keymap.set('i', 'jj', '<esc>', { silent = true }) -- インサートモー�
 
 -- 検索結果を消す
 vim.api.nvim_set_keymap('n', '<leader>c', ':nohlsearch<CR>', { noremap = true, silent = true })
+
+-- 画面遷移
+vim.keymap.set({ 'n', 'v' }, '<leader>f', '<c-w>w')
 
 -- 相対行表示をon/off
 -- lazyのon offのキーとかぶっちゃったのでやめた

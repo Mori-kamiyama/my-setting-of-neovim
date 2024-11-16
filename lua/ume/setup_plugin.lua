@@ -269,7 +269,7 @@ require("lazy").setup({
 	},
 
 	-- flash
-	 { import = "ume.plugins.flash" }
+	 { import = "ume.plugins.flash" },
 
 }, {
 	ui = {
