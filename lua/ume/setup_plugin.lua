@@ -66,9 +66,7 @@ require("lazy").setup({
 	-- 括弧自動補完
 	{
 		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup()
-		end,
+		config = function() require("nvim-autopairs").setup() end,
 	},
 
 	-- treesitterの設定
@@ -108,6 +106,7 @@ require("lazy").setup({
 	-- コメントアウト
 	{
 		"numToStr/Comment.nvim",
+		event = { 'BufReadPost', 'BufNewFile' },
 		config = function()
 			require("Comment").setup {
 				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
@@ -116,7 +115,11 @@ require("lazy").setup({
 	},
 
 	-- tsコンテキストコメント
-	{ "JoosepAlviste/nvim-ts-context-commentstring", dependencies = "nvim-treesitter/nvim-treesitter" },
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		event = { 'BufReadPost', 'BufNewFile' },
+		dependencies = "nvim-treesitter/nvim-treesitter",
+	},
 
 	-- ファイルの高速実行
 	{ "thinca/vim-quickrun" },
@@ -180,24 +183,37 @@ require("lazy").setup({
 	-- snippetプラグイン
 	{
 		"L3MON4D3/LuaSnip",
-		dependencies = { "saadparwaiz1/cmp_luasnip" },
+		dependencies = {
+			"saadparwaiz1/cmp_luasnip", -- cmpとの連携
+			"rafamadriz/friendly-snippets", -- 汎用スニペット集
+		},
 		config = function()
-			require("luasnip.loaders.from_lua").load({ paths = vim.fn.expand("~/.config/nvim/lua/ume/snippets/") })
+			local luasnip = require("luasnip")
+
+			-- カスタムスニペットのロード
+			local custom_snippets_path = vim.fn.expand("~/.config/nvim/lua/ume/snippets/")
+			if vim.fn.isdirectory(custom_snippets_path) == 1 then
+				require("luasnip.loaders.from_lua").load({
+					paths = custom_snippets_path,
+				})
+			else
+				vim.notify("Custom snippets path does not exist: " .. custom_snippets_path, vim.log.levels.WARN)
+			end
+
+			-- FriendlySnippetsをロード
+			require("luasnip.loaders.from_vscode").lazy_load()
 		end,
 	},
 
-	-- LSPと補完の設定
+	-- 補完
 	{
 		"hrsh7th/nvim-cmp",
-		-- 補完が効かないのが不便だったためやめてる
-		-- event = { "InsertEnter", "CmdlineEnter" }, -- 挿入モードとコマンドラインモードでロード
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
-			"hrsh7th/cmp-vsnip",
-			"hrsh7th/vim-vsnip",
+			"saadparwaiz1/cmp_luasnip", -- LuaSnip用補完ソース
 		},
 		config = function()
 			require("ume.plugins.nvim-cmp")
@@ -207,6 +223,7 @@ require("lazy").setup({
 	-- surround
 	{
 		"kylechui/nvim-surround",
+		lazy = true;
 		config = function()
 			require("nvim-surround").setup({})
 		end,
@@ -215,6 +232,7 @@ require("lazy").setup({
 	-- インクリメント・デクリメント
 	{
 		"monaqa/dial.nvim",
+		lazy = true,
 		config = function()
 			require("ume.plugins.dial")
 		end,
