@@ -1,11 +1,14 @@
-# 概要
-
 > [!WARNING]
-> 2024/11/17で、dotfilesによって管理することにしたため、
-> これは古い設定です。
-> linkをここに乗っける
+> On 2024/11/17, I decided to manage by dotfiles, so <br>
+> This is an old configuration. <br>
+> Please check the link for the latest settings.<br>
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=new-umechan&repo=dotfiles&show_owner=true)](https://github.com/new-umechan/dotfiles)
 
 
+
+
+# About
 macで使っています。
 デフォルトのterminalは、アイコンや色の表示ができないため、
 Weztermをおすすめします。
