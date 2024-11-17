@@ -1,4 +1,11 @@
 # 概要
+
+> [!WARNING]
+> 2024/11/17で、dotfilesによって管理することにしたため、
+> これは古い設定です。
+> linkをここに乗っける
+
+
 macで使っています。
 デフォルトのterminalは、アイコンや色の表示ができないため、
 Weztermをおすすめします。
@@ -48,7 +55,6 @@ mv my-setting-of-neovim nvim
   https://qiita.com/delphinus/items/fb905e452b2de72f1a0f#4-%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%AE%E9%81%85%E5%BB%B6%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF
 
 ### ToDo
-- [x] commentをtypescirptにも対応させる。
 - [x] git操作やりやすく
 	- [x] git関係の追加・LSP ( ALE ) エラーの見やすい表示
 - [x] ALE errorメッセージの、warningレベルだと、errorの色を<br>
@@ -56,9 +62,7 @@ mv my-setting-of-neovim nvim
 	  → 結構3時間かかった
 - [x] packerからlazy.nvimへの移行をする
 - [x] snipetをつける(cmainで#include~ が入力できるなど)
-- [x] telescopeにいろんな機能を割り当てる
-- [ ] キーマップをわかりやすくする
-- [ ] メインの ファイラーをoil.nvimへ
+- [ ] キーマップをわかりやすくする which-key.nvim
 - [x] hop.nvimを変える → flash.nvimへ
 - [ ] 遅延読み込みで起動時間50msを目指す
     - [x] 100msを切る
@@ -80,6 +84,5 @@ mv my-setting-of-neovim nvim
 	  → 画面遷移がめんどい
 	  隙間が気になる
 
-### あきらめた
-pullリクエスト大歓迎
+### あきらめた pullリクエスト大歓迎
 - [ ] markdownを編集しやすくする
